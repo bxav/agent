@@ -1,7 +1,7 @@
 examples:
   - name: Search & Calculate
     description: Will use a calculator 
-    file: ./templates/search_calculate.yaml
+    file: https://raw.githubusercontent.com/bxav/agent/main/apps/agent-cli/examples/templates/search_calculate.yaml
     args:
       - name: Open Ai Key
         inTemplate: OPENAI_API_KEY

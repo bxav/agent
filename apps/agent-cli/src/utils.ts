@@ -1,35 +1,30 @@
-import * as yaml from 'js-yaml';
+import axios from 'axios';
 import * as fs from 'fs';
+import * as yaml from 'js-yaml';
+import * as url from 'url';
 import * as path from 'path';
 
-export function loadYaml(filePath: string): any {
-  try {
-    const fileContent = yaml.load(fs.readFileSync(filePath, 'utf8'));
+export async function loadConfig(
+  filePath: string,
+  raw: boolean = false,
+): Promise<any> {
+  const parsedUrl = url.parse(filePath);
+  const fileContent =
+    parsedUrl.protocol && ['http:', 'https:'].includes(parsedUrl.protocol)
+      ? (await axios.get(filePath)).data
+      : fs.readFileSync(filePath, 'utf8');
+
+  if (raw) {
     return fileContent;
-  } catch (error) {
-    console.error('Error reading or parsing YAML file:', error);
   }
-}
 
-export function loadJSON(filePath: string): any {
-  try {
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const data = JSON.parse(fileContent);
-    return data;
-  } catch (error) {
-    console.error('Error reading or parsing JSON file:', error);
-  }
-}
-
-export function loadConfig(filePath: string): any {
-  const ext = path.extname(filePath);
-
-  switch (ext.toLowerCase()) {
+  const ext = path.extname(filePath).toLowerCase();
+  switch (ext) {
     case '.yaml':
     case '.yml':
-      return loadYaml(filePath);
+      return yaml.load(fileContent);
     case '.json':
-      return loadJSON(filePath);
+      return JSON.parse(fileContent);
     default:
       console.error('Unsupported file format:', ext);
   }

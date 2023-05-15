@@ -24,7 +24,7 @@ export class RunAgentCommand extends CommandRunner {
     const path = passedParam[0] || (await this.promptForPath());
     const objective = options.input || (await this.promptForObjective());
 
-    const configData = loadConfig(path);
+    const configData = await loadConfig(path);
     const agentExecutor = await this.buildAgentExecutor(configData);
 
     if (configData.agent.type.startsWith('chat-')) {

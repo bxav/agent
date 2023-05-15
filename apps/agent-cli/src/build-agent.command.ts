@@ -21,7 +21,14 @@ export class BuildAgentCommand extends CommandRunner {
   async run(passedParam: string[], options: { input?: string }): Promise<void> {
     let path = passedParam[0];
 
-    const configData = loadConfig(join(path, 'examples.yaml'));
+    let configData;
+    if (!path) {
+      configData = await loadConfig(
+        'https://raw.githubusercontent.com/bxav/agent/main/apps/agent-cli/examples/examples.yaml',
+      );
+    } else {
+      configData = await loadConfig(join(path, 'examples.yaml'));
+    }
 
     const example = await this.inquirer.inquirer.prompt([
       {
@@ -44,7 +51,7 @@ export class BuildAgentCommand extends CommandRunner {
     console.log(args);
 
     const rawFile = (
-      await fs.promises.readFile(join(path, example.example.file), 'utf8')
+      await loadConfig(example.example.file, true)
     ).replace(new RegExp(Object.keys(args).join('|'), 'g'), (k) => args[k]);
 
     const { file } = await this.inquirer.inquirer.prompt([
