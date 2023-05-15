@@ -48,11 +48,10 @@ export class BuildAgentCommand extends CommandRunner {
       })),
     );
 
-    console.log(args);
-
-    const rawFile = (
-      await loadConfig(example.example.file, true)
-    ).replace(new RegExp(Object.keys(args).join('|'), 'g'), (k) => args[k]);
+    const rawFile = (await loadConfig(example.example.file, true)).replace(
+      new RegExp(Object.keys(args).join('|'), 'g'),
+      (k) => args[k],
+    );
 
     const { file } = await this.inquirer.inquirer.prompt([
       { name: 'file', message: 'What name do you want to give your file?' },

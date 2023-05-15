@@ -1,11 +1,18 @@
 examples:
   - name: Search & Calculate
-    description: Will use a calculator 
+    description: Will use a calculator
     file: https://raw.githubusercontent.com/bxav/agent/main/apps/agent-cli/examples/templates/search_calculate.yaml
     args:
       - name: Open Ai Key
         inTemplate: OPENAI_API_KEY
-        description: https://platform.openai.com/account/api-keys 
+        description: https://platform.openai.com/account/api-keys
       - name: SerpAPI Key
         inTemplate: SERPAPI_API_KEY
         description: https://serpapi.com/manage-api-key
+  - name: Chat & Do math
+    description: Chat & Do math
+    file: https://raw.githubusercontent.com/bxav/agent/main/apps/agent-cli/examples/templates/math_chat.yaml
+    args:
+      - name: Open Ai Key
+        inTemplate: OPENAI_API_KEY
+        description: https://platform.openai.com/account/api-keys

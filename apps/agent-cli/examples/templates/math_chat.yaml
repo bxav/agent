@@ -2,6 +2,7 @@ llm:
   type: ChatOpenAI
   options:
     temperature: 0.7
+    openAIApiKey: OPENAI_API_KEY
 
 agent:
   type: chat-zero-shot-react-description
