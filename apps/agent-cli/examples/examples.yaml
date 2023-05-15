@@ -1,0 +1,11 @@
+examples:
+  - name: Search & Calculate
+    description: Will use a calculator 
+    file: ./templates/search_calculate.yaml
+    args:
+      - name: Open Ai Key
+        inTemplate: OPENAI_API_KEY
+        description: https://platform.openai.com/account/api-keys 
+      - name: SerpAPI Key
+        inTemplate: SERPAPI_API_KEY
+        description: https://serpapi.com/manage-api-key

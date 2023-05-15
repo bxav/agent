@@ -1,0 +1,12 @@
+llm:
+  type: ChatOpenAI
+  options:
+    temperature: 0.7
+
+agent:
+  type: chat-zero-shot-react-description
+
+tools:
+  - type: Calculator
+
+

@@ -1,0 +1,21 @@
+{
+  "name": "@bxav/agent",
+  "version": "0.0.0",
+  "author": "Xavier Buillit <xavier@buill.it>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bxav/agent.git"
+  },
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "devDependencies": {
+    "nx": "16.1.4",
+    "nx-cloud": "latest"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "examples/*"
+  ]
+}

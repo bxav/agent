@@ -1,0 +1,29 @@
+llm:
+  type: OpenAI
+  options:
+    temperature: 0.7
+    openAIApiKey: OPENAI_API_KEY
+
+agent:
+  type: zero-shot-react-description
+  options:
+    prefix: 'Answer the following questions as best you can, but speaking as a pirate might speak. You have access to the following tools:'
+    suffix: |
+      Begin! Remember to speak as a pirate when giving your final answer. Use lots of "Args"
+      Question: {input}
+      {agent_scratchpad}
+    inputVariables:
+      - input
+      - agent_scratchpad
+
+tools:
+  - type: SerpAPI
+    options:
+      apiKey: SERPAPI_API_KEY
+      params:
+        location: San Francisco,California,United States
+        hl: en
+        gl: us
+  - type: Calculator
+
+
